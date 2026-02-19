@@ -20,7 +20,8 @@ persist_directory/
 # big data zips (optional)
 *.zip
 
-data/
+data/*
+!data/README.md
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
