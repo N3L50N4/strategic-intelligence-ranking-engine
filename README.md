@@ -1,40 +1,96 @@
 # Strategic Intelligence Ranking Engine (RAG-Based)
 
-## Overview
-A Retrieval-Augmented Generation (RAG) system that integrates quantitative financial trends with qualitative strategic insights from company documents to rank organizations by growth trajectory and innovation readiness.
+A Retrieval-Augmented Generation (RAG) system that integrates quantitative financial metrics with qualitative AI initiative signals to rank organizations by growth trajectory and innovation readiness.
 
-## Key Features
-- Stock trend signals (e.g., Yahoo Finance)
-- PDF/document retrieval with RAG
+## Problem Context
+
+Traditional investment analysis emphasizes numerical indicators such as market capitalization, revenue, and stock performance. While these metrics reflect current financial momentum, they often overlook qualitative signals related to long-term innovation and AI adoption.
+
+Strategic documents contain valuable forward-looking insights, yet they are unstructured and difficult to integrate systematically with financial metrics.
+
+This project bridges that gap by combining structured financial data with document-grounded reasoning using Retrieval-Augmented Generation (RAG).
+
+## System Overview
+
+The system integrates:
+
+- Financial metrics retrieved via yfinance
+
+- AI initiative documents (PDF ingestion)
+
+- Recursive text chunking
+
+- Embedding generation
+
+- Chroma vector store for semantic retrieval
+
 - LLM-based reasoning grounded in retrieved evidence
-- Ranking output based on combined quantitative + qualitative signals
+
+- Integrated ranking logic across quantitative and qualitative signals
+
+## Architecture Components
+1. Financial Signal Extraction
+
+  - Market metrics such as market cap, P/E ratio, dividend yield, beta, and revenue are programmatically retrieved.
+
+2. Document Processing Pipeline
+
+  - PDF ingestion
+
+  - Text splitting (RecursiveCharacterTextSplitter)
+
+  - Embedding generation
+
+  - Vector indexing using Chroma
+
+3. Retrieval-Augmented Reasoning
+
+  - The LLM generates responses grounded in semantically retrieved document chunks.
+
+4. Integrated Ranking Output
+
+  - Organizations are ranked using a combined evaluation of financial strength and innovation readiness.
 
 ## How to Run
-Open the notebook and run cells top-to-bottom.
-If API keys are required, set them via environment variables (recommended).
 
-## Future Improvements
-- Add automated evaluation metrics
-- Add persistent storage for embeddings
-- Convert notebook into modular Python package
+1. Install dependencies:
+
+> pip install -r requirements.txt
+
+2. Set your OpenAI API key.
+
+> On macOS/Linux:
+>> export OPENAI_API_KEY="your-api-key"
+
+> On Windows:
+>> setx OPENAI_API_KEY "your-api-key"
+
+> Alternatively, the notebook will prompt for the key if not already set.
+
+3. Ensure required PDF documents are placed in the expected directory (see Data Setup below).
+
+4. Run the notebook top-to-bottom.
 
 ## Data Setup
 
 This project expects a directory containing PDF documents describing organizational AI initiatives.
 
-To run the notebook locally or in Colab:
-
-1. Create a folder named `Companies-AI-Initiatives/`
-2. Place PDF documents (one per organization) inside this folder
-3. Update the notebook path if running outside Colab
-
-Example structure:
+Create the following structure:
 
 Companies-AI-Initiatives/
 ├── company_a_ai_strategy.pdf
 ├── company_b_innovation_report.pdf
 └── company_c_ai_overview.pdf
 
-For demonstration purposes, any publicly available AI-related corporate reports can be used.
+If running locally, update the PDF_DIR variable in the notebook accordingly.
 
+## Future Improvements
+
+- Add automated evaluation metrics for ranking robustness
+
+- Introduce persistent embedding storage
+
+- Implement structured score normalization
+
+- Convert notebook into modular Python package architecture
 
